@@ -1,0 +1,27 @@
+{% extends 'main/base.html'%}
+{%import 'main/macros.html' as macro%}
+{% block styles%}
+{{ super() }}
+<style>
+        body {
+                background: rgb(218, 221, 152);
+                background: linear-gradient(90deg, rgba(218, 221, 152, 1) 0%, rgba(218, 221, 152, 1) 35%, rgba(208, 240, 192, 1) 100%);
+        }
+</style>
+
+{% endblock %}
+{% block content %}
+<div class="container">
+
+        <h2 class="text-center" style="font-family: 'Cinzel', serif; text-decoration: underline; margin-bottom: 30px;">
+                Recent Blogs</h2>
+
+        <div class="card-columns">
+                {{macro.displayBlogs(blog)}}
+        </div>
+
+</div>
+
+
+</div>
+{% endblock %}
