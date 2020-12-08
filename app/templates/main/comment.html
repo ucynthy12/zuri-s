@@ -1,0 +1,157 @@
+{% extends 'main/base.html'%}
+{% import 'main/macros.html' as macro%}
+{% import "bootstrap/wtf.html" as wtf %}
+{% block styles%} {{ super() }}
+<style>
+    body {
+        background: rgb(218, 221, 152);
+        background: linear-gradient(90deg, rgba(218, 221, 152, 1) 0%, rgba(218, 221, 152, 1) 35%, rgba(208, 240, 192, 1) 100%);
+    }
+
+    .blockquote-custom {
+        position: relative;
+        font-size: 1.1rem;
+    }
+
+    .blockquote-custom-icon {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        top: -25px;
+        left: 50px;
+    }
+
+    .pb-cmnt-container {
+
+        margin-top: 10px;
+    }
+
+    input[type=textarea] {
+        resize: none;
+        padding: 20px;
+        height: 130px;
+        width: 100%;
+        border: 1px solid #F2F2F2;
+    }
+    label{
+        font-weight:bold;
+        text-decoration: underline;
+    }
+    input[type=submit] {
+        background-color: blue;
+        padding: 5px;
+        color: white;
+    }
+</style>
+{% endblock %}
+<!-- Content block -->
+{%block content%}
+<div class="container">
+    <section class="py-5">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-6 mx-auto">
+                    <header class="text-center pb-5">
+                        <h1 class="h2" style="font-family: 'Playfair Display', serif;">{{blog.blog_title}}</h1>
+                        <p style="font-family: 'Playfair Display', serif;">{{blog.blog_description}} </p>
+                    </header>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-lg-6 mx-auto">
+
+                    <!-- CUSTOM BLOCKQUOTE -->
+                    <blockquote class="blockquote blockquote-custom bg-white p-5 shadow rounded">
+                        <div class="blockquote-custom-icon bg-info shadow-sm"><i
+                                class="fa fa-quote-left text-white"></i></div>
+                        <p class="mb-0 mt-2 font-italic" style="font-family: 'Playfair Display', serif;">
+                            {{blog.blog_content}}</p>
+                        <footer class="blockquote-footer pt-4 mt-4 border-top">
+                            <cite title="Source Title">{{blog.user.username}}</cite>
+
+                        </footer>
+                        <a href="{{url_for('main.update',id=blog.id)}}" class="btn btn-sm float-right font-italic"
+                            style="color: green;"><i class="fas fa-edit"></i>&nbsp;&nbsp;&nbsp;Update Blog</a>
+                    </blockquote><!-- END -->
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="card-body">
+                                <div class="media d-flex">
+                                    <div class="align-self-center">
+                                        <i class="icon-speech warning font-large-2 float-left"></i>
+                                    </div>
+                                    <div class="media-body">
+
+
+
+                                        <h3 style="font-family: 'Playfair Display', serif;"><i class="fas fa-comment"
+                                                style="color: green;"></i>Comments</h3>
+                                        {% if comments %}
+
+                                        {% for comment in comments %}
+                                        <p class="mt-10" style="font-family: 'Playfair Display', serif;"><span
+                                                style="font-weight: bold; color: green;">{{comment.user.username}} :
+                                            </span>
+                                            {{comment.comment}}<a class="btn text-dark btn-sm m-1 float-right"
+                                                data-toggle="modal" data-target="#modalConfirmDelete" type="submit"
+                                                style="background-color: #D0FFC2;">x</a></p>
+
+                                        {% if current_user.is_authenticated %}
+                                        <div class="modal fade" id="modalConfirmDelete" tabindex="-1" role="dialog"
+                                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-sm modal-notify modal-success"
+                                                role="document">
+                                                <div class="modal-content text-center">
+                                                    <div class="modal-header d-flex justify-content-center">
+                                                        <p class="heading">Do you wish to delete?</p>
+                                                    </div>
+                                                    <div class="modal-footer flex-center">
+                                                        <form action="{{url_for('main.delete_comment',id = blog.id)}}"
+                                                            method="POST">
+                                                            <input type="submit" class="btn  btn-outline-success btn-sm"
+                                                                value="Yes">
+                                                        </form>
+                                                        <a type="button" class="btn btn-sm btn-success"
+                                                            data-dismiss="modal">No</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {%endif%}
+                                        {% endfor %}
+                                        {% else %}
+                                        <p>this story doesn't have any comment</p>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container pb-cmnt-container">
+
+
+                        <div class="panel panel-info">
+                            <div class="panel-body">
+                                {{wtf.quick_form(comment_form )}}
+
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+
+{%endblock%}
