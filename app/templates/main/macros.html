@@ -1,0 +1,25 @@
+{% macro displayBlogs(blogs_list)%}
+{%for blog in blogs_list%}
+
+
+
+   
+    <div class="card p-3 ">
+        <h5 class="card-title text-center" style="font-family: 'Playfair Display', serif; font-weight: bold;">{{blog.blog_title}}</h5>
+        <h6 class='text-center' style="font-family: 'Playfair Display', serif;">{{blog.blog_description}}</h6>
+        <blockquote class="blockquote mb-0 card-body">
+            <p style="font-family: 'Playfair Display', serif;">{{blog.blog_content | truncate (100)}}</p>
+            <footer class="blockquote-footer">
+                <small class="text-muted">
+                    <cite title="Source Title">{{blog.posted.strftime('%B %d, %Y')}}</cite>
+                </small>
+            </footer>
+            <p>{{blog.username}} <br> <a href="/comment/{{blog.id}}" class="btn btn-primary float-right"
+                style=" background-color: #6184D8; color: #000; border:none;">View story</a> </p>
+        </blockquote>
+       
+    </div>
+
+
+{%endfor%}
+{%endmacro%}
