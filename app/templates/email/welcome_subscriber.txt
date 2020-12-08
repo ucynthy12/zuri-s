@@ -1,0 +1,6 @@
+
+Hello {{name}}, 
+thank you for subscribing to Zuri's Women's blogs where we keep you posted on the latest posted blogs!
+
+Regards,
+Zuri's
