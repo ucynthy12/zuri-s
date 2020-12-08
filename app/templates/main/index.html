@@ -1,0 +1,41 @@
+{% extends 'main/base.html' %}
+{% block styles%}
+{{ super()}}
+<style>
+    body {
+        background: rgb(193, 250, 193);
+        background: linear-gradient(0deg, rgba(193, 250, 193, 1) 0%, rgba(202, 251, 185, 1) 100%);
+        font-family: 'Amatic SC', cursive;
+
+    }
+    
+    img {
+        height: 70vh;
+
+    }
+
+    #logo {
+        font-family: 'Amatic SC', cursive;
+
+    }
+</style>
+{% endblock %}
+
+
+{% block content %}
+<div class="container">
+    <div id='logo' style="font-size: 60px;">
+        <h3 class="text-center">Zuri's </h3>
+        <h4 class="text-center">Women's Blog</h4>
+    </div>
+    <img src="https://res.cloudinary.com/ucynthy12/image/upload/v1607213786/41643edabb953277b4f7c6995b2f4b2b_ovkkiv-removebg-preview_vrg7oq.png"
+        class=" mx-auto d-block">
+
+    <blockquote class="blockquote text-right">
+        <p class="mb-0">{{quotes.quote}}</p>
+        <footer class="blockquote-footer"><cite title="Source Title">{{quotes.author}}</cite></footer>
+    </blockquote>
+
+</div>
+
+{% endblock%}
