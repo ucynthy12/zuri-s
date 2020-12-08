@@ -1,0 +1,43 @@
+{% extends 'main/base.html' %}
+{% import 'bootstrap/wtf.html' as wtf %}
+{% block styles%}
+{{ super() }}
+<style>
+    body {
+        background: rgb(218, 221, 152);
+        background: linear-gradient(90deg, rgba(218, 221, 152, 1) 0%, rgba(218, 221, 152, 1) 35%, rgba(208, 240, 192, 1) 100%);
+    }
+
+    input[type=submit] {
+        background-color: rgb(82, 176, 238);
+        color: white;
+        margin: 10px auto;
+        width: 30%;
+        border-radius: 2px;
+        padding: 6px;
+        margin-left: 30%;
+    }
+
+    input[type=file] {
+        margin-top: 15%;
+        margin-left: 18%;
+        padding: 5px;
+        width: 60%;
+    }
+
+    body {
+        font-family: 'Playfair Display', serif;
+    }
+</style>
+{% endblock %}
+{% block content %}
+{% if current_user %}
+<div class="container">
+    <form action="{{url_for('main.update_profile_pic',uname=current_user.username)}}" method="post"
+        enctype="multipart/form-data">
+        <input type="file" name="photo" class="form-control" required>
+        <input type="submit">
+    </form>
+</div>
+{% endif %}
+{% endblock %}
