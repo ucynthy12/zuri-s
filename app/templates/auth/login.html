@@ -1,0 +1,52 @@
+{% import 'bootstrap/wtf.html' as wtf%}
+{% extends 'main/base.html'%}
+
+{% block styles %}
+{{ super() }}
+<style>
+    input[type=submit]{
+        background-color: rgb(205, 236, 146);
+    }
+    .container{
+        font-family: 'Amatic SC', cursive;
+
+    }
+    .login-card{
+        font-weight: bold;
+    }
+    main{
+        background:rgb(255, 255, 179)
+    }
+</style>
+
+{% endblock %}
+{% block content %}
+
+<main class="d-flex align-items-center min-vh-100 py-3 py-md-0">
+    <div class="container">
+        <div class="card login-card">
+            <div class="row no-gutters">
+                <div class="col-md-5">
+                    <img class="img-fluid" src="https://res.cloudinary.com/ucynthy12/image/upload/v1607213014/Screenshot_from_2020-12-05_22-32-40-removebg-preview_uvsdnf.png" alt="">
+                </div>
+                <div class="col-md-7">
+                    <div class="card-body">
+                        <div class="brand"></div>
+                        {% for message in get_flashed_messages() %}
+                        <div class="alert alert-danger">
+                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            {{ message }}
+                        </div>
+                        {% endfor %}
+                        <p class="login-card text-center">Sign into your account</p>
+                        {{wtf.quick_form(login_form)}}
+                        <p> Don't have an account? <a href="{{url_for('auth.register')}}" style="font-size: large; font-weight: bold;">Sign up here</a></p>
+                        <p class="card-text text-center"><small class="text-muted">ZURI'S Blog</small></p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}
