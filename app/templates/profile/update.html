@@ -1,0 +1,94 @@
+{% extends 'main/base.html' %}
+{% import 'bootstrap/wtf.html' as wtf %}
+{% block styles%}
+{{ super() }}
+<style>
+    body {
+        background: rgb(218, 221, 152);
+        background: linear-gradient(90deg, rgba(218, 221, 152, 1) 0%, rgba(218, 221, 152, 1) 35%, rgba(208, 240, 192, 1) 100%);
+    }
+
+    .container {
+        font-family: 'Playfair Display', serif;
+        margin-top: 2%;
+    }
+
+    h5 {
+        text-decoration: underline;
+
+    }
+
+    .card {
+        position: relative;
+    }
+
+    .card:before {
+        z-index: -1;
+        position: absolute;
+        content: "";
+        bottom: 15px;
+        left: 10px;
+        width: 50%;
+        top: 80%;
+        max-width: 300px;
+        background: rgb(123, 182, 153);
+        ;
+        -webkit-box-shadow: 0 15px 10px rgb(123, 182, 153);
+        ;
+        -moz-box-shadow: 0 15px 10px rgb(123, 182, 153);
+        box-shadow: 0 15px 10px rgb(123, 182, 153);
+        ;
+        -webkit-transform: rotate(-3deg);
+        -moz-transform: rotate(-3deg);
+        -o-transform: rotate(-3deg);
+        -ms-transform: rotate(-3deg);
+        transform: rotate(-3deg);
+    }
+
+    label {
+        text-transform: uppercase;
+        padding: 5px 0;
+
+    }
+
+    input {
+        width: 100%;
+    }
+
+    input[type=submit] {
+        background-color: green;
+        color: white;
+    }
+
+    textarea {
+        width: 100%;
+    }
+
+    select {
+        width: 100%;
+        padding: 6px 0;
+    }
+</style>
+{% endblock %}
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-title">
+                        <h5 class="text-center">Edit your profile</h5>
+                        {{wtf.quick_form(form)}}
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+</div>
+{% endblock %}
