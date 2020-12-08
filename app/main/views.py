@@ -78,14 +78,10 @@ def blogs():
     return render_template('main/blogs.html', blog = blog)
 
    
-@main.route('/blogs/comment/delete/<blog_id>', methods = ['GET', 'POST'])
+@main.route('/blogs/comment/delete/<comment_id>', methods = ['GET', 'POST'])
 @login_required
-def delete(blog_id):
-    blog = Blog.query.get(blog_id)
-    if blog.user != current_user:
-        abort(403)
-    blog.delete_comment()
-    db.session.commit()
+def delete(comment_id):
+    Comment.delete_comment(comment_id)
     return redirect(url_for('main.blogs'))
 
     

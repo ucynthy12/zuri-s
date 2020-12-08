@@ -85,7 +85,7 @@ class Comment(db.Model):
     
     @classmethod
     def delete_comment(self,blog_id):
-        comments= Comment.query.filter_by(blog_id = blog_id).all()
+        comment= Comment.query.get(blog_id)
         db.session.delete(comment)
         db.session.commit()
 

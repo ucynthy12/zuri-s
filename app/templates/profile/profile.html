@@ -64,12 +64,9 @@
     <div class="card" id='user'>
         <div class="row no-gutters">
             <div class="col-md-4">
-                {% if user.profile_pic_path %}
+                {% if user.profile_pic %}
                 <img src="{{url_for('static',filename=user.profile_pic)}}" alt="" class="img-thumbnail">
-                <small class="text-muted"><a href="{{url_for('main.update_profile_pic',uname=user.username)}}"
-                        id='pic'>Edit your
-                        picture</a></small>
-
+              
                 {%else%}
                 <p class="text-center">No profile picture</p>
               
@@ -99,5 +96,8 @@
         </div>
     </div>
 </div>
+
+
+{%endfor%}
 
 {% endblock %}
